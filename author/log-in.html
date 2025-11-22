@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Author</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1>Blog</h1>
+      </div>
+    </header>
+    <div class="body">
+      <div class="page-title">
+        <h2>Blog Author</h2>
+      </div>
+      <main>
+        <div class="log-in-form-container">
+          <form class="log-in-form">
+            <h3>Log in</h3>
+            <div class="form-row">
+              <label for="username">username</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                required
+                minlength="4"
+              />
+            </div>
+            <div class="form-row">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" required />
+            </div>
+            <button type="submit" class="button">Submit</button>
+          </form>
+        </div>
+        <div class="loading hidden"></div>
+        <div class="errors hidden"></div>
+      </main>
+    </div>
+    <script>
+      (function () {
+        async function logIn(userData) {
+          return fetch("http://localhost:3000/log-in", {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(userData),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((json) => {
+              return json;
+            });
+        }
+
+        async function handleSubmit(event) {
+          event.preventDefault();
+
+          const loadingSpinner = document.querySelector(".loading");
+          const formData = new FormData(logInForm);
+          const userData = {
+            username: formData.get("username"),
+            password: formData.get("password"),
+          };
+
+          try {
+            errorsContainer.classList.add("hidden");
+            loadingSpinner.classList.remove("hidden");
+            const result = await logIn(userData);
+            if (result.errors) {
+              errorsContainer.innerHTML = "";
+              errorsContainer.classList.remove("hidden");
+              result.errors.forEach((error) => {
+                displayError(error);
+              });
+            } else if (result.username && result.token) {
+              localStorage.setItem("username", result.username || null);
+              localStorage.setItem("token", result.token || null);
+              window.location.href = "/author";
+            }
+          } catch (error) {
+            console.error(error);
+          } finally {
+            loadingSpinner.classList.add("hidden");
+          }
+        }
+
+        function displayError(error) {
+          const newError = document.createElement("div");
+          newError.classList.add("error");
+          newError.textContent = error;
+          errorsContainer.appendChild(newError);
+        }
+
+        const logInForm = document.querySelector(".log-in-form");
+        const errorsContainer = document.querySelector(".errors");
+        logInForm.addEventListener("submit", handleSubmit);
+      })();
+    </script>
+  </body>
+</html>
