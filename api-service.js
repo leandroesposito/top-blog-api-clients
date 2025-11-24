@@ -18,6 +18,10 @@ class ApiService {
 
     return fetch(endpoint, options)
       .then((response) => {
+        if (response.status === 404) {
+          return { error: "404" };
+        }
+
         return response.json();
       })
       .then((json) => {
@@ -36,6 +40,9 @@ class ApiService {
 
       return result.posts;
     } catch (error) {
+      if (error.message.startsWith("NetworkError")) {
+        return { errors: [error.message] };
+      }
       console.error(error);
     }
     return [];
