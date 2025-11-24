@@ -1,5 +1,5 @@
 class ApiService {
-  async makeRequest(endpoint, method, data, includeToken = false) {
+  static async makeRequest(endpoint, method, data, includeToken = false) {
     const options = {
       mode: "cors",
       method,
@@ -25,9 +25,9 @@ class ApiService {
       });
   }
 
-  async getUserPosts(userId, includeToken) {
+  static async getUserPosts(userId, includeToken) {
     try {
-      const result = await this.makeRequest(
+      const result = await ApiService.makeRequest(
         `http://localhost:3000/posts/author/${userId}`,
         "GET",
         null,
