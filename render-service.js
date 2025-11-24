@@ -27,10 +27,12 @@ class RenderService {
     comments.classList.add("comments");
     newPost.appendChild(comments);
 
-    post.comments.forEach((comment) => {
-      const commentContainer = this.createCommentElem(comment);
-      comments.appendChild(commentContainer);
-    });
+    if (post.comments) {
+      post.comments.forEach((comment) => {
+        const commentContainer = this.createCommentElem(comment);
+        comments.appendChild(commentContainer);
+      });
+    }
 
     return newPost;
   }
