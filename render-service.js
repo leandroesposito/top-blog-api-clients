@@ -58,4 +58,48 @@ class RenderService {
 
     return commentContainer;
   }
+
+  static displayErrors(errors, selector = ".errors", container = document) {
+    const errorsContainer = container.querySelector(selector);
+    errorsContainer.classList.remove("hidden");
+
+    for (const error of errors) {
+      const errorElement = document.createElement("div");
+      errorElement.classList.add("error");
+      errorElement.textContent = error;
+      errorsContainer.appendChild(errorElement);
+    }
+  }
+
+  static displaySuccess(
+    message,
+    selector = ".successes",
+    container = document
+  ) {
+    const sucessContainer = container.querySelector(selector);
+    sucessContainer.classList.remove("hidden");
+
+    const sucessElement = document.createElement("div");
+    sucessElement.classList.add("success");
+    sucessElement.textContent = message;
+    sucessContainer.appendChild(sucessElement);
+  }
+
+  static #getLoadingElement(container) {
+    if (typeof container === "string") {
+      container = document.querySelector(container);
+    }
+
+    return container.querySelector(".loading");
+  }
+
+  static showLoading(container = document) {
+    const loadingElement = RenderService.#getLoadingElement(container);
+    loadingElement.classList.remove("hidden");
+  }
+
+  static hideLoading(container = document) {
+    const loadingElement = RenderService.#getLoadingElement(container);
+    loadingElement.classList.add("hidden");
+  }
 }
