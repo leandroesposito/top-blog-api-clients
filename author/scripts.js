@@ -58,7 +58,8 @@ function hidePostForm() {
   postFormContainer.classList.add("hidden");
 }
 
-async function handlePostSubmit() {
+async function handlePostSubmit(event) {
+  event.preventDefault();
   const postForm = document.querySelector(".post-form");
   const formData = new FormData(postForm);
 
@@ -104,8 +105,8 @@ async function init() {
   const newPostButton = document.querySelector(".new-post-button");
   newPostButton.addEventListener("click", handleNewPostButton);
 
-  const submitPostButton = document.querySelector(".post-form button");
-  submitPostButton.addEventListener("click", handlePostSubmit);
+  const postForm = document.querySelector(".post-form");
+  postForm.addEventListener("submit", handlePostSubmit);
 
   await loadPosts();
 }
