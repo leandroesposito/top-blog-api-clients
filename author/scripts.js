@@ -30,6 +30,34 @@ function renderPost(post) {
   const postsContainer = document.querySelector(".posts");
   const newPost = RenderService.createPostElem(post);
 
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.classList.add("buttons");
+
+  const editButton = document.createElement("button");
+  editButton.textContent = "Edit";
+  editButton.dataset.id = post.id;
+  editButton.addEventListener("click", handleEditPostClick);
+  buttonsContainer.appendChild(editButton);
+
+  const deletePostButton = document.createElement("button");
+  deletePostButton.textContent = "Delete";
+  deletePostButton.dataset.id = post.id;
+  deletePostButton.addEventListener("click", handleDeletePostClick);
+  buttonsContainer.appendChild(deletePostButton);
+
+  newPost.appendChild(buttonsContainer);
+
+  const comments = newPost.querySelectorAll(".comment");
+  if (comments) {
+    [...comments].forEach((comment, index) => {
+      const deleteCommentButton = document.createElement("button");
+      deleteCommentButton.textContent = "Delete";
+      deleteCommentButton.dataset.id = post.comments[index].id;
+      deleteCommentButton.addEventListener("click", handleDeleteComentClick);
+      comment.appendChild(deleteCommentButton);
+    });
+  }
+
   postsContainer.appendChild(newPost);
 }
 
@@ -95,6 +123,18 @@ async function handlePostSubmit(event) {
 
 function handleCancelPostForm() {
   hidePostForm();
+}
+
+function handleDeletePostClick() {
+  alert("Not implemented");
+}
+
+function handleEditPostClick() {
+  alert("Not implemented");
+}
+
+function handleDeleteComentClick() {
+  alert("Not implemented");
 }
 
 async function init() {

@@ -224,9 +224,11 @@ form {
   display: flex;
 }
 
-form .buttons {
+form .buttons,
+.post .buttons {
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 
 .posts {
