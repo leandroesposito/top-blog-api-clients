@@ -93,6 +93,10 @@ async function handlePostSubmit(event) {
   }
 }
 
+function handleCancelPostForm() {
+  hidePostForm();
+}
+
 async function init() {
   if (!authService.isLogedIn()) {
     return (window.location.href = "./log-in.html");
@@ -107,6 +111,9 @@ async function init() {
 
   const postForm = document.querySelector(".post-form");
   postForm.addEventListener("submit", handlePostSubmit);
+
+  const cancelPostFormButton = postForm.querySelector("button.cancel");
+  cancelPostFormButton.addEventListener("click", handleCancelPostForm);
 
   await loadPosts();
 }
