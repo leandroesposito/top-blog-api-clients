@@ -47,6 +47,22 @@ class ApiService {
     }
     return [];
   }
-}
 
-const apiService = new ApiService();
+  static async createPost(post) {
+    try {
+      const result = await ApiService.makeRequest(
+        `http://localhost:3000/posts`,
+        "POST",
+        post,
+        true
+      );
+
+      return result;
+    } catch (error) {
+      if (error.message.startsWith("NetworkError")) {
+        return { errors: [error.message] };
+      }
+      console.error(error);
+    }
+  }
+}
