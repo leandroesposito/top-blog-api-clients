@@ -25,10 +25,13 @@ class ApiService {
       });
   }
 
-  async getUserPosts(userId) {
+  async getUserPosts(userId, includeToken) {
     try {
       const result = await this.makeRequest(
-        `http://localhost:3000/posts/author/${userId}`
+        `http://localhost:3000/posts/author/${userId}`,
+        "GET",
+        null,
+        includeToken
       );
 
       return result.posts;

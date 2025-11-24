@@ -12,7 +12,7 @@ function handleLogOut() {
 
 async function loadPosts() {
   console.log("fetching posts...");
-  const posts = await apiService.getUserPosts(authService.userId);
+  const posts = await apiService.getUserPosts(authService.userId, true);
   console.log(posts);
   posts.forEach((post) => {
     renderPost(post);
