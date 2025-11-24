@@ -228,3 +228,13 @@ form .buttons {
   display: flex;
   justify-content: center;
 }
+
+.posts {
+  display: grid;
+  gap: 2rem;
+}
+
+.comments {
+  display: grid;
+  gap: 1rem;
+}
