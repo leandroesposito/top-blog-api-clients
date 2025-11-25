@@ -73,6 +73,35 @@ class RenderService {
     return commentContainer;
   }
 
+  static createCommentForm() {
+    const commentFormContainer = document.createElement("div");
+    commentFormContainer.classList.add("comment-form-container");
+
+    const commentFormHtml = `
+        <form class="comment-form">
+          <h3>New comment</h3>
+          <div class="form-row">
+            <label for="author-name">Name</label>
+            <input type="text" name="author-name" id="author-name" required />
+          </div>
+          <div class="form-row">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" rows="3" required ></textarea>
+          </div>
+          <input type="hidden" class="post-id" value="" />
+          <div class="buttons">
+            <button type="submit" class="button submit">Submit</button>
+            <button type="button" class="button cancel">Cancel</button>
+          </div>
+        </form>
+        <div class="loading hidden"></div>
+      `;
+
+    commentFormContainer.innerHTML = commentFormHtml;
+
+    return commentFormContainer;
+  }
+
   static displayErrors(errors, selector = ".errors", container = document) {
     const errorsContainer = container.querySelector(selector);
     errorsContainer.classList.remove("hidden");

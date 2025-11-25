@@ -72,6 +72,19 @@ class ApiService {
     }
   }
 
+  static async getAllPosts() {
+    try {
+      const result = await ApiService.makeRequest(
+        `http://localhost:3000/posts`,
+        "GET"
+      );
+
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   static async createPost(post) {
     try {
       const result = await ApiService.makeRequest(
@@ -109,6 +122,20 @@ class ApiService {
         "DELETE",
         null,
         true
+      );
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  static async createComment(postId, data) {
+    try {
+      const response = await ApiService.makeRequest(
+        `http://localhost:3000/posts/${postId}/comments`,
+        "POST",
+        data
       );
 
       return response;
