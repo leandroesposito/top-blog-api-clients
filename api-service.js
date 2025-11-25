@@ -66,4 +66,19 @@ class ApiService {
       console.error(error);
     }
   }
+
+  static async deletePost(id) {
+    try {
+      const response = await ApiService.makeRequest(
+        `http://localhost:3000/posts/${id}`,
+        "DELETE",
+        null,
+        true
+      );
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

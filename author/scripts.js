@@ -125,8 +125,22 @@ function handleCancelPostForm() {
   hidePostForm();
 }
 
-function handleDeletePostClick() {
-  alert("Not implemented");
+async function handleDeletePostClick(event) {
+  const target = event.target;
+  const id = target.dataset.id;
+
+  const result = await ApiService.deletePost(id);
+
+  if (result.errors) {
+    RenderService.displayErrors(result.errors);
+  }
+  if (result.success) {
+    RenderService.displaySuccess(result.success);
+    const postElement = document.querySelector(
+      `.post:has(button[data-id='${id}'])`
+    );
+    postElement.remove();
+  }
 }
 
 function handleEditPostClick() {
