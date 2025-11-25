@@ -3,7 +3,7 @@ class RenderService {
     const newPost = document.createElement("div");
     newPost.classList.add("post");
 
-    const title = document.createElement("div");
+    const title = document.createElement("h4");
     title.classList.add("post-title");
     title.textContent = post.title;
     newPost.appendChild(title);
@@ -23,11 +23,15 @@ class RenderService {
     content.textContent = post.content;
     newPost.appendChild(content);
 
-    const comments = document.createElement("div");
-    comments.classList.add("comments");
-    newPost.appendChild(comments);
+    if (post.comments && post.comments.length > 0) {
+      const comments = document.createElement("div");
+      comments.classList.add("comments");
+      newPost.appendChild(comments);
 
-    if (post.comments) {
+      const commentsTitle = document.createElement("h5");
+      commentsTitle.textContent = "Comments";
+      comments.appendChild(commentsTitle);
+
       post.comments.forEach((comment) => {
         const commentContainer = this.createCommentElem(comment);
         comments.appendChild(commentContainer);
