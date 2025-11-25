@@ -45,7 +45,9 @@ function renderPost(post) {
   deletePostButton.addEventListener("click", handleDeletePostClick);
   buttonsContainer.appendChild(deletePostButton);
 
-  newPost.appendChild(buttonsContainer);
+  const newPostComments = newPost.querySelector(".comments");
+
+  newPost.insertBefore(buttonsContainer, newPostComments);
 
   const comments = newPost.querySelectorAll(".comment");
   if (comments) {
