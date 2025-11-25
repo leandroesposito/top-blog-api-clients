@@ -1,5 +1,10 @@
 class ApiService {
-  static async makeRequest(endpoint, method, data, includeToken = false) {
+  static async makeRequest(
+    endpoint,
+    method,
+    data = null,
+    includeToken = false
+  ) {
     const options = {
       mode: "cors",
       method,
