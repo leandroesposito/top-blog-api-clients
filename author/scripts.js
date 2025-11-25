@@ -61,27 +61,32 @@ function renderPost(post) {
   postsContainer.appendChild(newPost);
 }
 
-function resetPostForm() {
+function clearPostForm() {
   const postForm = document.querySelector(".post-form");
-  const idInput = postForm.querySelector("[name='id']");
 
   postForm.reset();
+
+  const idInput = postForm.querySelector("[name='id']");
   idInput.value = "";
 }
 
-function handleNewPostButton() {
-  resetPostForm();
+function showPostForm(formTitle) {
   const postFormContainer = document.querySelector(".post-form-container");
-  const titleInput = postFormContainer.querySelector("[name='title']");
-  const formTitle = postFormContainer.querySelector("h3");
-  formTitle.textContent = "New Post";
+  const titleInput = postFormContainer.querySelector("input#title");
+
+  const formTitleElement = postFormContainer.querySelector("h3");
+  formTitleElement.textContent = formTitle;
 
   postFormContainer.classList.remove("hidden");
   titleInput.focus();
 }
 
+function handleNewPostButton() {
+  showPostForm("New post");
+}
+
 function hidePostForm() {
-  resetPostForm();
+  clearPostForm();
   const postFormContainer = document.querySelector(".post-form-container");
   postFormContainer.classList.add("hidden");
 }
