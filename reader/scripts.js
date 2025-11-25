@@ -57,6 +57,14 @@ function handleLeaveCommentClick(event) {
   postIdInput.value = target.dataset.id;
 
   post.insertBefore(newCommentForm, postComments);
+
+  const nameInput = newCommentForm.querySelector("input");
+  nameInput.focus();
+
+  newCommentForm.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+  });
 }
 
 function removeCommentForm() {
@@ -97,7 +105,10 @@ async function handleCommentSubmit(event) {
     const newComment = RenderService.createCommentElem(result.comment);
     removeCommentForm();
     comments.appendChild(newComment);
-    newComment.scrollIntoView(false);
+    newComment.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   }
 }
 

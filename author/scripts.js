@@ -61,6 +61,7 @@ function renderPost(post) {
   }
 
   postsContainer.appendChild(newPost);
+  return newPost;
 }
 
 function clearPostForm() {
@@ -81,6 +82,10 @@ function showPostForm(formTitle) {
 
   postFormContainer.classList.remove("hidden");
   titleInput.focus();
+  postFormContainer.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+  });
 }
 
 function handleNewPostButton() {
@@ -130,7 +135,7 @@ async function handlePostSubmit(event) {
   }
 
   if (result.post) {
-    renderPost(result.post);
+    renderPost(result.post).scrollIntoView();
   }
 }
 

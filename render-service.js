@@ -112,6 +112,10 @@ class RenderService {
       errorElement.textContent = error;
       errorsContainer.appendChild(errorElement);
     }
+    errorsContainer.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   }
 
   static displaySuccess(
@@ -126,6 +130,10 @@ class RenderService {
     sucessElement.classList.add("success");
     sucessElement.textContent = message;
     sucessContainer.appendChild(sucessElement);
+    sucessContainer.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   }
 
   static #getLoadingElement(container) {
@@ -139,6 +147,10 @@ class RenderService {
   static showLoading(container = document) {
     const loadingElement = RenderService.#getLoadingElement(container);
     loadingElement.classList.remove("hidden");
+    loadingElement.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   }
 
   static hideLoading(container = document) {
