@@ -1,6 +1,6 @@
 class RenderService {
   static createPostElem(post) {
-    const newPost = document.createElement("div");
+    const newPost = document.createElement("article");
     newPost.classList.add("post");
 
     const title = document.createElement("h4");
