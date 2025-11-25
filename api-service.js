@@ -52,11 +52,41 @@ class ApiService {
     return [];
   }
 
+  static async getPostById(id) {
+    try {
+      const result = await ApiService.makeRequest(
+        `http://localhost:3000/posts/${id}`,
+        "GET",
+        null,
+        true
+      );
+
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   static async createPost(post) {
     try {
       const result = await ApiService.makeRequest(
         `http://localhost:3000/posts`,
         "POST",
+        post,
+        true
+      );
+
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  static async editPost(post) {
+    try {
+      const result = await ApiService.makeRequest(
+        `http://localhost:3000/posts/${post.id}`,
+        "PUT",
         post,
         true
       );
