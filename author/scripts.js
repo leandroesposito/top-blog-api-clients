@@ -21,7 +21,7 @@ async function loadPosts() {
     return;
   }
 
-  response.forEach((post) => {
+  response.posts.forEach((post) => {
     renderPost(post);
   });
 }

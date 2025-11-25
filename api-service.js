@@ -26,6 +26,13 @@ class ApiService {
       })
       .then((json) => {
         return json;
+      })
+      .catch((error) => {
+        console.error(error);
+        if (error.message.startsWith("NetworkError")) {
+          return { errors: [error.message] };
+        }
+        throw error;
       });
   }
 
@@ -38,11 +45,8 @@ class ApiService {
         includeToken
       );
 
-      return result.posts;
+      return result;
     } catch (error) {
-      if (error.message.startsWith("NetworkError")) {
-        return { errors: [error.message] };
-      }
       console.error(error);
     }
     return [];
@@ -59,9 +63,6 @@ class ApiService {
 
       return result;
     } catch (error) {
-      if (error.message.startsWith("NetworkError")) {
-        return { errors: [error.message] };
-      }
       console.error(error);
     }
   }
