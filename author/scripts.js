@@ -109,7 +109,13 @@ async function handlePostSubmit(event) {
   if (post.id === "") {
     result = await ApiService.createPost(post);
   } else {
-    alert("NOT IMPLEMENTED");
+    result = await ApiService.editPost(post);
+    if (result.success) {
+      const updatedPostElement = document.querySelector(
+        `.post:has(button[data-id='${post.id}'])`
+      );
+      updatedPostElement.remove();
+    }
   }
   RenderService.hideLoading();
 
@@ -148,8 +154,26 @@ async function handleDeletePostClick(event) {
   }
 }
 
-function handleEditPostClick() {
-  alert("Not implemented");
+async function handleEditPostClick(event) {
+  const target = event.target;
+  const id = target.dataset.id;
+
+  const result = await ApiService.getPostById(id);
+
+  if (result.errors) {
+    RenderService.displayErrors(result.errors);
+  }
+  console.log(result);
+  if (result.post) {
+    const postForm = document.querySelector(".post-form");
+
+    postForm.elements["title"].value = result.post.title;
+    postForm.elements["content"].value = result.post.content;
+    postForm.elements["is-published"].checked = result.post.isPublished;
+    postForm.elements["id"].value = result.post.id;
+
+    showPostForm("Edit post");
+  }
 }
 
 function handleDeleteComentClick() {
