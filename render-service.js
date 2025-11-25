@@ -8,17 +8,22 @@ class RenderService {
     title.textContent = post.title;
     newPost.appendChild(title);
 
+    const postData = document.createElement("div");
+    postData.classList.add("post-data");
+
     const author = document.createElement("div");
     author.classList.add("post-author");
-    author.textContent = post.author.username;
-    newPost.appendChild(author);
+    author.textContent = "By " + post.author.username;
+    postData.appendChild(author);
 
     const date = document.createElement("div");
     date.classList.add("post-date");
     date.textContent = post.date;
-    newPost.appendChild(date);
+    postData.appendChild(date);
 
-    const content = document.createElement("div");
+    newPost.appendChild(postData);
+
+    const content = document.createElement("pre");
     content.classList.add("post-content");
     content.textContent = post.content;
     newPost.appendChild(content);
@@ -45,15 +50,20 @@ class RenderService {
     const commentContainer = document.createElement("div");
     commentContainer.classList.add("comment");
 
+    const commentData = document.createElement("div");
+    commentData.classList.add("comment-data");
+
     const authorName = document.createElement("div");
-    authorName.classList.add("authorName");
+    authorName.classList.add("author-name");
     authorName.textContent = comment.authorName;
-    commentContainer.appendChild(authorName);
+    commentData.appendChild(authorName);
 
     const date = document.createElement("div");
     date.classList.add("date");
     date.textContent = comment.date;
-    commentContainer.appendChild(date);
+    commentData.appendChild(date);
+
+    commentContainer.appendChild(commentData);
 
     const content = document.createElement("div");
     content.classList.add("content");
