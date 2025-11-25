@@ -176,8 +176,22 @@ async function handleEditPostClick(event) {
   }
 }
 
-function handleDeleteComentClick() {
-  alert("Not implemented");
+async function handleDeleteComentClick(event) {
+  const target = event.target;
+  const id = target.dataset.id;
+
+  const response = await ApiService.deleteComment(id);
+
+  if (response.errors) {
+    RenderService.displayErrors(response.errors);
+  }
+  if (response.success) {
+    RenderService.displaySuccess(response.success);
+    const commentElement = document.querySelector(
+      `.comment:has(button[data-id='${id}'])`
+    );
+    commentElement.remove();
+  }
 }
 
 async function init() {

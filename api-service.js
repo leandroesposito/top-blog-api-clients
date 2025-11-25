@@ -111,4 +111,19 @@ class ApiService {
       console.error(error);
     }
   }
+
+  static async deleteComment(id) {
+    try {
+      const response = await ApiService.makeRequest(
+        `http://localhost:3000/comments/${id}`,
+        "DELETE",
+        null,
+        true
+      );
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
