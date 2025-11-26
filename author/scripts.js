@@ -144,6 +144,10 @@ function handleCancelPostForm() {
 }
 
 async function handleDeletePostClick(event) {
+  if (!confirm("Are you sure you want to DELETE this post?")) {
+    return;
+  }
+
   const target = event.target;
   const id = target.dataset.id;
 
@@ -184,6 +188,10 @@ async function handleEditPostClick(event) {
 }
 
 async function handleDeleteComentClick(event) {
+  if (!confirm("Are you sure you want to DELETE this comment?")) {
+    return;
+  }
+
   const target = event.target;
   const id = target.dataset.id;
 
