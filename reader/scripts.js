@@ -101,7 +101,18 @@ async function handleCommentSubmit(event) {
 
   if (result.comment) {
     const post = target.closest(".post");
-    const comments = post.querySelector(".comments");
+    let comments = post.querySelector(".comments");
+
+    if (!comments) {
+      comments = document.createElement("div");
+      comments.classList.add("comments");
+      post.appendChild(comments);
+
+      const commentsTitle = document.createElement("h5");
+      commentsTitle.textContent = "Comments";
+      comments.appendChild(commentsTitle);
+    }
+
     const newComment = RenderService.createCommentElem(result.comment);
     removeCommentForm();
     comments.appendChild(newComment);
