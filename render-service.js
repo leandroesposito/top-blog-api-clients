@@ -18,7 +18,7 @@ class RenderService {
 
     const date = document.createElement("div");
     date.classList.add("post-date");
-    date.textContent = post.date;
+    date.textContent = new Date(post.date).toLocaleString();
     postData.appendChild(date);
 
     newPost.appendChild(postData);
@@ -60,7 +60,7 @@ class RenderService {
 
     const date = document.createElement("div");
     date.classList.add("date");
-    date.textContent = comment.date;
+    date.textContent = new Date(comment.date).toLocaleString();
     commentData.appendChild(date);
 
     commentContainer.appendChild(commentData);
