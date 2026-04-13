@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -68,7 +68,7 @@
               localStorage.setItem("username", result.username || null);
               localStorage.setItem("userId", result.userId || null);
               localStorage.setItem("token", result.token || null);
-              window.location.href = "/author";
+              window.location.href = "../author";
             }
           } catch (error) {
             console.error(error);
