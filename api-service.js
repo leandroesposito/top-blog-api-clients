@@ -3,7 +3,7 @@ class ApiService {
     endpoint,
     method,
     data = null,
-    includeToken = false
+    includeToken = false,
   ) {
     const options = {
       mode: "cors",
@@ -44,10 +44,10 @@ class ApiService {
   static async getUserPosts(userId, includeToken) {
     try {
       const result = await ApiService.makeRequest(
-        `http://localhost:3000/posts/author/${userId}`,
+        `https://top-blog-api-xqzb.onrender.com/posts/author/${userId}`,
         "GET",
         null,
-        includeToken
+        includeToken,
       );
 
       return result;
@@ -60,10 +60,10 @@ class ApiService {
   static async getPostById(id) {
     try {
       const result = await ApiService.makeRequest(
-        `http://localhost:3000/posts/${id}`,
+        `https://top-blog-api-xqzb.onrender.com/posts/${id}`,
         "GET",
         null,
-        true
+        true,
       );
 
       return result;
@@ -75,8 +75,8 @@ class ApiService {
   static async getAllPosts() {
     try {
       const result = await ApiService.makeRequest(
-        `http://localhost:3000/posts`,
-        "GET"
+        `https://top-blog-api-xqzb.onrender.com/posts`,
+        "GET",
       );
 
       return result;
@@ -88,10 +88,10 @@ class ApiService {
   static async createPost(post) {
     try {
       const result = await ApiService.makeRequest(
-        `http://localhost:3000/posts`,
+        `https://top-blog-api-xqzb.onrender.com/posts`,
         "POST",
         post,
-        true
+        true,
       );
 
       return result;
@@ -103,10 +103,10 @@ class ApiService {
   static async editPost(post) {
     try {
       const result = await ApiService.makeRequest(
-        `http://localhost:3000/posts/${post.id}`,
+        `https://top-blog-api-xqzb.onrender.com/posts/${post.id}`,
         "PUT",
         post,
-        true
+        true,
       );
 
       return result;
@@ -118,10 +118,10 @@ class ApiService {
   static async deletePost(id) {
     try {
       const response = await ApiService.makeRequest(
-        `http://localhost:3000/posts/${id}`,
+        `https://top-blog-api-xqzb.onrender.com/posts/${id}`,
         "DELETE",
         null,
-        true
+        true,
       );
 
       return response;
@@ -133,9 +133,9 @@ class ApiService {
   static async createComment(postId, data) {
     try {
       const response = await ApiService.makeRequest(
-        `http://localhost:3000/posts/${postId}/comments`,
+        `https://top-blog-api-xqzb.onrender.com/posts/${postId}/comments`,
         "POST",
-        data
+        data,
       );
 
       return response;
@@ -147,10 +147,10 @@ class ApiService {
   static async deleteComment(id) {
     try {
       const response = await ApiService.makeRequest(
-        `http://localhost:3000/comments/${id}`,
+        `https://top-blog-api-xqzb.onrender.com/comments/${id}`,
         "DELETE",
         null,
-        true
+        true,
       );
 
       return response;

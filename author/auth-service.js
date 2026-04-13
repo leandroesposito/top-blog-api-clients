@@ -1,6 +1,6 @@
 class AuthService {
   async logIn(userData) {
-    return fetch("http://localhost:3000/log-in", {
+    return fetch("https://top-blog-api-xqzb.onrender.com/log-in", {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(userData),
